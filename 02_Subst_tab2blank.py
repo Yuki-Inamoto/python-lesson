@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 import sys
 
-param = sys.argv
+argvs = sys.argv
+argc=len(argvs)
 
-with open(param[1], 'r', encoding='utf-8') as candidate_f, open(param[2], "w") as f:
+if (argc != 3):   # 引数チェック
+    print('Usage: # python %s input_filename output_filename' % argvs[0])
+    quit()        # プログラムの終了
+
+with open(argvs[1], 'r', encoding='utf-8') as candidate_f, open(argvs[2], "w") as f:
 	for row in candidate_f:
-		row = row.replace('\t', ' ')
+		row = row.replace('\t', ' ') #タブを空白に置き換え
 		f.write(row)
 

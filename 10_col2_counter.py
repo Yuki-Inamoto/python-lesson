@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 import sys
 
-param = sys.argv
+argvs = sys.argv
+argc=len(argvs)
+
+if (argc != 2):   # 引数チェック
+	print('Usage: # python %s col2.txt' % argvs[0])
+	quit()        # プログラムの終了
 
 with open("col2.txt",'r', encoding='utf-8') as candidate_f, open("map.txt",'w', encoding='utf-8') as map_f:
 	for row in candidate_f:
@@ -16,11 +21,8 @@ with open("map.txt",'r', encoding='utf-8') as map_f, open("result.txt",'w', enco
 		wordcounter[word]=wordcounter.get(word,0) + count
 
 	sorted_list = sorted(wordcounter.items(), key = lambda line:line[1], reverse = True)
-	#print(sorted_list)
 
 	for word,count in sorted_list:
-		#res_f.write(str(line) + " / " + str(sorted_list[int(line)]))
-		#print(word + " / " + str(count))
 		res_f.write(word + " / " + str(count) + "\n")
 
 
