@@ -3,26 +3,27 @@
 import sys
 
 argvs = sys.argv
-argc=len(argvs)
+argc = len(argvs)
 
-if (argc != 4):   # ˆø”ƒ`ƒFƒbƒN
-	print('Usage: # python %s input_filename output_filename num' % argvs[0])
-	quit()        # ƒvƒƒOƒ‰ƒ€‚ÌI—¹
-	
+if (argc != 4):   # å¼•æ•°ãƒã‚§ãƒƒã‚¯
+    print('Usage: # python %s input_filename output_filename num' % argvs[0])
+    raise SystemExit()  # ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®çµ‚äº†
+
 N_row = int(argvs[3])
 
 row_counter = 0
 i = 0
 
-with open(argvs[1],'r', encoding='utf-8') as candidate_f, open(argvs[2],'w', encoding='utf-8') as output_f:
-	for row in candidate_f: #ƒtƒ@ƒCƒ‹“à‚Ìs”‚ÌƒJƒEƒ“ƒg
-		row_counter += 1
-	
-	candidate_f.seek(0)
-	
-	border = row_counter - N_row #ƒtƒ@ƒCƒ‹‚É‘‚«‚Şs‚Ì‹«ŠE‚ğŠi”[
+with open(argvs[1], 'r', encoding='utf-8') as candidate_f,\
+        open(argvs[2], 'w', encoding='utf-8') as output_f:
 
-	for i in range(0,row_counter):
-		buf = candidate_f.readline()
-		if border <= i:
-			output_f.write(buf)
+    for row in candidate_f: # ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®è¡Œæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
+        row_counter += 1
+    candidate_f.seek(0)
+
+    border = row_counter - N_row # ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€è¡Œã®å¢ƒç•Œã‚’æ ¼ç´
+
+    for i in range(0, row_counter):
+        buf = candidate_f.readline()
+        if border <= i:
+            output_f.write(buf)

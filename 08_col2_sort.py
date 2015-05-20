@@ -2,24 +2,22 @@
 import sys
 
 argvs = sys.argv
-argc=len(argvs)
+argc = len(argvs)
 
-if (argc != 3):   # 引数チェック
-	print('Usage: # python %s input_filename output_filename' % argvs[0])
-	quit()        # プログラムの終了
+if (argc != 3):   # 蠑墓焚繝√ぉ繝�繧ｯ
+    print('Usage: # python %s input_filename output_filename' % argvs[0])
+    raise SystemExit()  # 繝励Ο繧ｰ繝ｩ繝縺ｮ邨ゆｺ�
 
-out_list=[]
+out_list = []
+i = 0
 
-i=0
+with open(argvs[1], 'r', encoding='utf-8') as candidate_f,\
+        open(argvs[2], 'w', encoding='utf-8') as output_f:
+    for row in candidate_f:
+        buf = tuple(row.split("\t"))
+        out_list.append(buf)
 
-with open(argvs[1],'r', encoding='utf-8') as candidate_f, open(argvs[2],'w', encoding='utf-8') as output_f:
-	for row in candidate_f:
-		buf = row.split("\t")
-		out_list.append(buf)
-		
-	out_list.sort(key = lambda line:line[1])
-	
-	for i in range(0,len(out_list)):
-		output_f.write('\t'.join(out_list[i]))
+    sorted_out_list = sorted(out_list, key=lambda line: line[1])
 
-
+    for len in sorted_out_list:
+        output_f.write(len[0] + "\t" + len[1])

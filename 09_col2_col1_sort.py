@@ -2,26 +2,25 @@
 import sys
 
 argvs = sys.argv
-argc=len(argvs)
+argc = len(argvs)
 
-if (argc != 3):   # ˆø”ƒ`ƒFƒbƒN
-	print('Usage: # python %s input_filename output_filename' % argvs[0])
-	quit()        # ƒvƒƒOƒ‰ƒ€‚ÌI—¹
+if (argc != 3):   # å¼•æ•°ãƒã‚§ãƒƒã‚¯
+    print('Usage: # python %s input_filename output_filename' % argvs[0])
+    raise SystemExit()  # ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®çµ‚äº†
 
-out_list=[]
+out_list = []
 
-i=0
+i = 0
 
-with open(argvs[1],'r', encoding='utf-8') as candidate_f, open(argvs[2],'w', encoding='utf-8') as output_f:
-	for row in candidate_f:
-		buf = row.split("\t")
-		out_list.append(buf)
-		
-	out_list.sort(key = lambda line:line[0],reverse = True)
-	out_list.sort(key = lambda line:line[1],reverse = True)
+with open(argvs[1], 'r', encoding='utf-8') as candidate_f,\
+        open(argvs[2], 'w', encoding='utf-8') as output_f:
 
-	
-	for i in range(0,len(out_list)):
-		output_f.write('\t'.join(out_list[i]))
+    for row in candidate_f:
+        buf = row.split("\t")  #ã‚¿ãƒ–ã§åˆ†å‰²
+        out_list.append(buf)  #ã‚½ãƒ¼ãƒˆç”¨ã®ãƒªã‚¹ãƒˆã«æ ¼ç´
 
+    out_list.sort(key=lambda line: line[0], reverse=True)
+    out_list.sort(key=lambda line: line[1], reverse=True)
 
+    for i in range(0, len(out_list)):
+        output_f.write('\t'.join(out_list[i]))

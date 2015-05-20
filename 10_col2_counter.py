@@ -2,27 +2,32 @@
 import sys
 
 argvs = sys.argv
-argc=len(argvs)
+argc = len(argvs)
 
-if (argc != 2):   # 引数チェック
-	print('Usage: # python %s col2.txt' % argvs[0])
-	quit()        # プログラムの終了
+if (argc != 2):   # 蠑墓焚繝√ぉ繝�繧ｯ
+    print('Usage: # python %s col2.txt' % argvs[0])
+    raise SystemExit()  # 繝励Ο繧ｰ繝ｩ繝縺ｮ邨ゆｺ�
 
-with open("col2.txt",'r', encoding='utf-8') as candidate_f, open("map.txt",'w', encoding='utf-8') as map_f:
-	for row in candidate_f:
-		map_f.write(row.rstrip() + "\t" + "1" + "\n")
+with open("col2.txt", 'r', encoding='utf-8') as candidate_f,\
+        open("map.txt", 'w', encoding='utf-8') as map_f:
+
+    for row in candidate_f:
+        map_f.write(row.rstrip() + "\t" + "1" + "\n")
 
 wordcounter = {}
 
-with open("map.txt",'r', encoding='utf-8') as map_f, open("result.txt",'w', encoding='utf-8') as res_f:
-	for row in map_f:
-		word,count = row.split("\t", 1)
-		count=int(count)
-		wordcounter[word]=wordcounter.get(word,0) + count
+with open("map.txt", 'r', encoding='utf-8') as map_f,\
+        open("result.txt", 'w', encoding='utf-8') as res_f:
+    for row in map_f:
+        word, count = row.split("\t", 1)
+        count = int(count)
+        wordcounter[word] = wordcounter.get(word, 0) + count
 
-	sorted_list = sorted(wordcounter.items(), key = lambda line:line[1], reverse = True)
+    sorted_list = sorted(
+        wordcounter.items(),
+        key=lambda line: line[1],
+        reverse=True
+    )
 
-	for word,count in sorted_list:
-		res_f.write(word + " / " + str(count) + "\n")
-
-
+    for word, count in sorted_list:
+        res_f.write(word + " / " + str(count) + "\n")
