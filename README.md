@@ -5,7 +5,9 @@
 #実行方法
 python *.py input_filename output_filename 繰り返し回数  
 上記コマンドの引数の数やファイルを適宜変更する
+* 実行対象データとしてaddress.txtを使用してください。
 * input_fileの文字コードは*UTF-8*にしてください
+
 #ファイル説明
 
 * 01_File_row_counter:  
