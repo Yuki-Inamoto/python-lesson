@@ -25,7 +25,7 @@ python *.py input_filename output_filename 繰り返し回数
 * 05_display_top_N:  
 引数で指定した数だけファイルの上からファイルに書き出す
   
- *06_display_tail_N:  
+* 06_display_tail_N:  
 引数で指定した数だけファイルの下からファイルに書き出す
   
 * 07_col_counter:  
